@@ -1,0 +1,25 @@
+# Makefile semplice
+
+CC = gcc            # compilatore C
+CXX = g++           # compilatore C++
+CFLAGS = -Wall -Wextra -c
+CXXFLAGS = -Wall -Wextra -c
+
+# file sorgente e oggetti
+OBJS = main.o lib.o
+
+# target finale
+main: $(OBJS)
+	$(CXX) -o main $(OBJS)
+
+# compilazione file C++
+main.o: main.cc lib.h
+	$(CXX) $(CXXFLAGS) main.cc
+
+# compilazione file C
+lib.o: lib.c lib.h
+	$(CC) $(CFLAGS) lib.c
+
+# pulizia
+clean:
+	rm -f *.o main
